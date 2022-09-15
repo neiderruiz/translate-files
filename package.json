@@ -1,6 +1,6 @@
 {
   "name": "translate-files",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "convert translations files csv spreadsheets easy",
   "main": "dist/index.js",
   "scripts": {
