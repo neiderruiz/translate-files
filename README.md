@@ -31,7 +31,7 @@ translateFileCsv(idDocument,routeFolderSave)
 
 ![image](https://user-images.githubusercontent.com/57574910/190467883-9f017028-a02f-4e78-b5a9-d279e277c4dd.png)
 
-- duplicate document in yout drive
+- duplicate document in your drive
 
 ![image](https://user-images.githubusercontent.com/57574910/190468094-03938268-16ca-44eb-97ee-91dd69e52ae8.png)
 
