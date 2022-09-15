@@ -7,8 +7,28 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node esbuild.config.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "translate",
+    "files",
+    "csv",
+    "spreadsheets",
+    "spreadsheet",
+    "translate-files",
+    "translate-file",
+    "translate-file-csv"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/neiderruiz/translate-files.git"
+  },
+  "bugs": {
+    "url": "http://github.com/neiderruiz/translate-files/issues"
+  },
+  "author": {
+    "name": "Neider Ruiz",
+    "email": "neiderbtc@gmail.com",
+    "url": "http://github.com/neiderruiz/"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.7.18",
