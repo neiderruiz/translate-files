@@ -73,3 +73,21 @@ translateFileCsv(idDocument,routeFolderSave)
 translateFileCsv('19sxdh1WE5RMXiuTWuMJonu81NWrewZbZ','./translations')
 ```
 
+- results
+
+![image](https://user-images.githubusercontent.com/57574910/190472890-5a6d1d64-7cd7-4480-9ece-23a4906b008e.png)
+
+- en
+
+![image](https://user-images.githubusercontent.com/57574910/190473010-0448614f-f168-424c-b114-b037777a3682.png)
+
+- es
+
+![image](https://user-images.githubusercontent.com/57574910/190473049-f82a1aa0-10fc-4eda-b855-13df42d73267.png)
+
+- fr
+
+![image](https://user-images.githubusercontent.com/57574910/190473106-eb9dcceb-95b3-4420-81f9-69a8e982ddd8.png)
+
+
+
