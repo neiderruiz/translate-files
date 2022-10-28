@@ -1,6 +1,6 @@
 {
-  "name": "translate-files",
-  "version": "1.0.4",
+  "name": "@neidercode/translate-files",
+  "version": "1.0.0",
   "description": "convert translations files csv spreadsheets easy",
   "main": "dist/index.js",
   "scripts": {
@@ -19,15 +19,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/neiderruiz/translate-files.git"
+    "url": "git://github.com/neidercode/translate-files.git"
   },
   "bugs": {
-    "url": "http://github.com/neiderruiz/translate-files/issues"
+    "url": "http://github.com/neidercode/translate-files/issues"
   },
   "author": {
     "name": "Neider Ruiz",
     "email": "neiderbtc@gmail.com",
-    "url": "http://github.com/neiderruiz/"
+    "url": "http://github.com/neidercode/"
   },
   "license": "MIT",
   "devDependencies": {
