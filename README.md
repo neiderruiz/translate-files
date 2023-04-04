@@ -3,16 +3,16 @@
 install in project
 
 ```
-npm i translate-files
+npm i @neiderruiz/translate-files
 ```
 ```
-import { translateFileCsv } from "translate-files";
+import { translateFileCsv } from "@neiderruiz/translate-files";
 ```
 
 or 
 
 ```
-const { translateFileCsv } = require("translate-files");
+const { translateFileCsv } = require("@neiderruiz/translate-files");
 ```
 
 usign
