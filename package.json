@@ -1,11 +1,11 @@
 {
   "name": "@neiderruiz/translate-files",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Internationalize and manage your website easily with (CSV and i18n)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js", 
+    ".": "./dist/index.js",
     "./react": "./dist/react/index.js",
     "./astro": "./dist/astro/index.js"
   },
