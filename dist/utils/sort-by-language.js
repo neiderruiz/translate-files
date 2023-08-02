@@ -8,7 +8,10 @@ const sortByLanguage = (jsonObj) => {
         Object.keys(row).map((fila) => {
             const exists = n.find((val) => val[fila]);
             if (exists) {
-                exists[fila] = Object.assign(Object.assign({}, exists[fila]), { [row["key"]]: row[fila] });
+                exists[fila] = {
+                    ...exists[fila],
+                    [row["key"]]: row[fila],
+                };
             }
             else {
                 n.push({
