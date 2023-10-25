@@ -1,6 +1,8 @@
 # 🚀 Welcome translate files!
 
-install in project
+## Internationalize your website or app in a simple way 🇨🇴 🇺🇸 🇩🇪
+
+- install in project
 
 ```
 npm i @neiderruiz/translate-files
@@ -9,29 +11,53 @@ npm i @neiderruiz/translate-files
 import { translateFileCsv } from "@neiderruiz/translate-files";
 ```
 
-or 
+- or 
 
 ```
 const { translateFileCsv } = require("@neiderruiz/translate-files");
 ```
 
-usign
+- usign
 ```
 translateFileCsv(idDocument,routeFolderSave)
 ```
 
-- #### Open url and duplicate file  in your google drive.
+##  🛑 If you already have a json with your translations you can use it as a base!
+
+- separator [your key separator '&&' or '-', default is '.']
+- langs [your langs translate website, default is empty ] [view list](https://github.com/neiderruiz/translate-files/blob/main/src/types/langs.ts){:target="_blank"}
+    - example ['es', 'en', 'fr', 'gu']
+- nameFile [name file result, default is 'result']
+
+```javascript
+    const { convertJsonToCsv } = require("@neiderruiz/translate-files");
+
+    const data = require('../services/lang/languages/es.json')
+
+    convertJsonToCsv(data, {
+        separator: '.', 
+        langs: ['es', 'en', 'fr', 'gu'],        
+        nameFile: 'my_result'
+    })
+```
+
+- import your result in Google Drive <a href="https://drive.google.com/drive/my-drive" target="_blank">open google drive</a>
+
+    - after open file with google sheets
+
+## Open url and duplicate file  in your google drive.
+
+🟢 <a href="https://docs.google.com/spreadsheets/d/1Xz_no_pM1hFRYJg_k_-gVqIvdwBycBVF/edit" target="_blank">document base spreadsheets translations</a>
 
 - #### Share document
     - give read permission
     - copy link
     - get document ID from url
 
-[document base spreadsheets translations](https://docs.google.com/spreadsheets/d/1Xz_no_pM1hFRYJg_k_-gVqIvdwBycBVF/edit)
 
 ![image](https://user-images.githubusercontent.com/57574910/190467883-9f017028-a02f-4e78-b5a9-d279e277c4dd.png)
 
-- duplicate document in yout drive
+- duplicate document in your drive
 
 ![image](https://user-images.githubusercontent.com/57574910/190468094-03938268-16ca-44eb-97ee-91dd69e52ae8.png)
 
@@ -43,7 +69,7 @@ translateFileCsv(idDocument,routeFolderSave)
 
 
 - We add our translations by editing the **base column**
-    - **key:** the unique key we use in our app to translate text
+    - **key:** the unique key we use in our app to translate text t('actions.save')
     - **base:** the text that we enter so that spreadsheets creates the translations automatically
     - **es,en,it,fr:** base languages ​​that the template has, you can add or remove languages
     
