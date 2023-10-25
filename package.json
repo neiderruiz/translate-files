@@ -1,6 +1,6 @@
 {
   "name": "@neiderruiz/translate-files",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Nationalize your website easily with a json from i18n",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
