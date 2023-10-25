@@ -1,16 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useTypedTranslation = void 0;
-var react_i18next_1 = require("react-i18next");
-function useTypedTranslation() {
-    var _a = (0, react_i18next_1.useTranslation)(), t = _a.t, i18n = _a.i18n;
-    var typedT = function (key) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
+import { useTranslation as translation } from 'react-i18next';
+export function useTypedTranslation() {
+    const { t, i18n } = translation();
+    const typedT = (key, ...args) => {
         return t(key);
     };
-    return { t: typedT, i18n: i18n };
+    return { t: typedT, i18n };
 }
-exports.useTypedTranslation = useTypedTranslation;
