@@ -2,7 +2,11 @@ import * as fs from "fs";
 import csv from "csvtojson";
 import { saveWithLevels } from "./save-with-levels";
 
-export const translateFileCsv = async (idDoc: string, folderSave: string) => {
+export type ConfigOptions = {
+  separator?: string;
+}
+
+export const translateFileCsv = async (idDoc: string, folderSave: string, config?: ConfigOptions) => {
   fetch(
     `https://docs.google.com/spreadsheets/d/${idDoc}/gviz/tq?tqx=out:csv`
   ).then(async (response) => {
@@ -17,7 +21,7 @@ export const translateFileCsv = async (idDoc: string, folderSave: string) => {
       csv()
         .fromFile(`${folderSave}/translations-app.csv`)
         .then((jsonObj) => {
-          saveWithLevels(jsonObj, folderSave);
+          saveWithLevels(jsonObj, folderSave, config);
         });
     } else {
       console.log("error al obtener los datos");
