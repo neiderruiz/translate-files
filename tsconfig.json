@@ -15,7 +15,7 @@
     "jsx": "react-jsx",
     "declaration": true,
     "outDir": "dist",
-    "module": "ESNext",
+    "module": "CommonJS",
     "types": ["node"]
   },
   "include": [
