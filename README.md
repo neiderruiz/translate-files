@@ -73,7 +73,7 @@ translateFileCsv(idDocument,routeFolderSave)
     - **base:** the text that we enter so that spreadsheets creates the translations automatically
     - **es,en,it,fr:** base languages ​​that the template has, you can add or remove languages
     
-<img width="658" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/5a77f813-0aef-4775-a6a2-b315eca42aac">
+<img width="655" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/4d237997-0256-458d-bbf1-7757dcfa148a">
 
 - we press share
   
