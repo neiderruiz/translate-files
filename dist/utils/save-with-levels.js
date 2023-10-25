@@ -24,22 +24,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.saveWithLevels = void 0;
-const fs = __importStar(require("fs"));
-const add_key_value_to_object_1 = require("./add-key-value-to-object");
-const sort_by_language_1 = require("./sort-by-language");
-const saveWithLevels = (jsonObj, folderSave) => {
-    const translationsOrders = (0, sort_by_language_1.sortByLanguage)(jsonObj);
-    const notCreate = ["base", "key"];
-    translationsOrders.map((translation) => {
-        const language = Object.keys(translation)[0];
+var fs = __importStar(require("fs"));
+var add_key_value_to_object_1 = require("./add-key-value-to-object");
+var sort_by_language_1 = require("./sort-by-language");
+var saveWithLevels = function (jsonObj, folderSave) {
+    var translationsOrders = (0, sort_by_language_1.sortByLanguage)(jsonObj);
+    var notCreate = ["base", "key"];
+    translationsOrders.map(function (translation) {
+        var language = Object.keys(translation)[0];
         if (!notCreate.includes(language)) {
-            let result = {};
-            Object.entries(translation[language]).forEach(([key, value]) => {
-                const keys = key.split("&&");
-                (0, add_key_value_to_object_1.addKeyValueToObject)(result, keys, value);
+            var result_1 = {};
+            Object.entries(translation[language]).forEach(function (_a) {
+                var key = _a[0], value = _a[1];
+                var keys = key.split("&&");
+                (0, add_key_value_to_object_1.addKeyValueToObject)(result_1, keys, value);
             });
-            fs.writeFileSync(`${folderSave}/${language}.json`, JSON.stringify(result, null, 4));
-            console.log(`Finish success ${language}`);
+            fs.writeFileSync("".concat(folderSave, "/").concat(language, ".json"), JSON.stringify(result_1, null, 4));
+            console.log("Finish success ".concat(language));
         }
     });
 };

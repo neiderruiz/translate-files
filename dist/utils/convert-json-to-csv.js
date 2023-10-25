@@ -24,16 +24,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertJsonToCsv = exports.createConversion = void 0;
-const fs = __importStar(require("fs"));
-const createConversion = (jsonObj) => {
-    let csv = '"key","base"\n';
-    const traverse = (obj, path = "") => {
-        for (const [key, value] of Object.entries(obj)) {
+var fs = __importStar(require("fs"));
+var createConversion = function (jsonObj) {
+    var csv = '"key","base"\n';
+    var traverse = function (obj, path) {
+        if (path === void 0) { path = ""; }
+        for (var _i = 0, _a = Object.entries(obj); _i < _a.length; _i++) {
+            var _b = _a[_i], key = _b[0], value = _b[1];
             if (typeof value === "object") {
                 traverse(value, path + key + "&&");
             }
             else {
-                csv += `"${path}${key}","${value}"\n`;
+                csv += "\"".concat(path).concat(key, "\",\"").concat(value, "\"\n");
             }
         }
     };
@@ -41,8 +43,9 @@ const createConversion = (jsonObj) => {
     return csv;
 };
 exports.createConversion = createConversion;
-const convertJsonToCsv = (data, { nameFile = "converted" } = {}) => {
-    const result = (0, exports.createConversion)(data);
-    fs.writeFileSync(`${nameFile}.csv`, result);
+var convertJsonToCsv = function (data, _a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.nameFile, nameFile = _c === void 0 ? "converted" : _c;
+    var result = (0, exports.createConversion)(data);
+    fs.writeFileSync("".concat(nameFile, ".csv"), result);
 };
 exports.convertJsonToCsv = convertJsonToCsv;
