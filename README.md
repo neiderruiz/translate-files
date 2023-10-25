@@ -102,18 +102,18 @@ translateFileCsv('19sxdh1WE5RMXiuTWuMJonu81NWrewZbZ','./translations')
 
 - en
 
-<img width="370" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/91cf277f-aa33-44c5-9293-8393c68c81be">
+<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/62e29d22-2f12-4f78-92a6-4627d538f3be">
 
 - es
 
-<img width="370" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/ff6c5b81-680b-4303-8e95-8dd64c7b7dbf">
+<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/0020f998-75ac-4a23-9e8b-d027b5ae9114">
 
 - fr
 
-<img width="370" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/c7901287-dbc4-41b9-b7ce-789c7b5a5f05">
+<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/63a73927-8dd7-4072-b5c1-04b24773afb6">
 
 - de
-
-<img width="370" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/4c0f85bc-ad7e-4a08-a539-e8a7d27eab87">
+  
+<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/3cdc0dbe-f25a-49a0-97c9-9e63fc7a61aa">
 
 
