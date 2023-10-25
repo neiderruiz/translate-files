@@ -25,24 +25,35 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertJsonToCsv = exports.createConversion = void 0;
 const fs = __importStar(require("fs"));
-const createConversion = (jsonObj) => {
-    let csv = '"key","base"\n';
+const createConversion = (jsonObj, config) => {
+    let csv = '"key","base"';
+    config?.langs?.forEach((lang) => {
+        csv += `,"${lang}"`;
+    });
+    csv += "\n";
+    let rowCounter = 2;
     const traverse = (obj, path = "") => {
-        for (const [key, value] of Object.entries(obj)) {
+        Object.entries(obj).forEach(([key, value], index) => {
             if (typeof value === "object") {
-                traverse(value, path + key + "&&");
+                traverse(value, path + key + (config?.separator ?? "."));
             }
             else {
-                csv += `"${path}${key}","${value}"\n`;
+                csv += `"${path}${key}","${value}"`;
+                config?.langs?.forEach((lang) => {
+                    csv += `,"=GOOGLETRANSLATE(B${rowCounter},""auto"",""${lang}"")"`;
+                });
+                csv += "\n";
+                rowCounter++;
             }
-        }
+        });
     };
     traverse(jsonObj);
+    console.log(`TRANSLATE SUCCESS ${config?.nameFile ?? 'converted'}.csv added ${rowCounter} rows`);
     return csv;
 };
 exports.createConversion = createConversion;
-const convertJsonToCsv = (data, { nameFile = "converted" } = {}) => {
-    const result = (0, exports.createConversion)(data);
-    fs.writeFileSync(`${nameFile}.csv`, result);
+const convertJsonToCsv = (data, config = {}) => {
+    const result = (0, exports.createConversion)(data, config);
+    fs.writeFileSync(`${config?.nameFile ?? 'converted'}.csv`, result);
 };
 exports.convertJsonToCsv = convertJsonToCsv;

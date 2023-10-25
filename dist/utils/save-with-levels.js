@@ -36,7 +36,6 @@ const saveWithLevels = (jsonObj, folderSave, config) => {
             let result = {};
             Object.entries(translation[language]).forEach(([key, value]) => {
                 const keys = key.split(config?.separator ?? ".");
-                console.log(keys, config);
                 (0, add_key_value_to_object_1.addKeyValueToObject)(result, keys, value);
             });
             fs.writeFileSync(`${folderSave}/${language}.json`, JSON.stringify(result, null, 4));

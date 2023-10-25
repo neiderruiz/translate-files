@@ -44,7 +44,6 @@ const translateFileCsv = async (idDoc, folderSave, config) => {
             (0, csvtojson_1.default)()
                 .fromFile(`${folderSave}/translations-app.csv`)
                 .then((jsonObj) => {
-                console.log("jsonObj-config", config);
                 (0, save_with_levels_1.saveWithLevels)(jsonObj, folderSave, config);
             });
         }

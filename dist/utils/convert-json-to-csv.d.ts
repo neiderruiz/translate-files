@@ -1,8 +1,13 @@
+import { TypeListLang } from "../types/langs";
 type TypeJson = {
     [key: string]: any;
 };
-export declare const createConversion: (jsonObj: TypeJson) => string;
-export declare const convertJsonToCsv: (data: TypeJson, { nameFile }?: {
-    nameFile?: string | undefined;
-}) => void;
+export type ConfigOptions = {
+    separator?: string;
+    nameFile?: string;
+    entryLanguage?: string;
+    langs?: TypeListLang[];
+};
+export declare const createConversion: (jsonObj: TypeJson, config?: ConfigOptions) => string;
+export declare const convertJsonToCsv: (data: TypeJson, config?: ConfigOptions) => void;
 export {};
