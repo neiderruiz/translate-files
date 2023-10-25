@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addKeyValueToObject = void 0;
-const addKeyValueToObject = (object, keys, value) => {
-    const [currentKey, ...remainingKeys] = keys;
+var addKeyValueToObject = function (object, keys, value) {
+    var currentKey = keys[0], remainingKeys = keys.slice(1);
     if (remainingKeys.length === 0) {
         object[currentKey] = value;
     }
