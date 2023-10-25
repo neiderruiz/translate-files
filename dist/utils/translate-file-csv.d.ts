@@ -1,1 +1,4 @@
-export declare const translateFileCsv: (idDoc: string, folderSave: string) => Promise<void>;
+export type ConfigOptions = {
+    separator?: string;
+};
+export declare const translateFileCsv: (idDoc: string, folderSave: string, config?: ConfigOptions) => Promise<void>;
