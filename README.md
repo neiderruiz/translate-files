@@ -92,28 +92,46 @@ translateFileCsv(idDocument,routeFolderSave)
 ![image](https://user-images.githubusercontent.com/57574910/190471046-cbc02298-ca21-4291-acc2-3fc5398919e0.png)
 
 
-```
+```javascript
+// src/utils/translate.js
+const { translateFileCsv } = require("@neiderruiz/translate-files");
+
 translateFileCsv('19sxdh1WE5RMXiuTWuMJonu81NWrewZbZ','./translations')
+
+```
+- add script in package.json
+```json
+// package.json
+{
+    "scripts": {
+        "translate": "node src/utils/translate.js"
+    }
+}
 ```
 
-- results
+- run script
+```bash
+npm run translate
+```
+
+- result
 
 ![image](https://user-images.githubusercontent.com/57574910/190472890-5a6d1d64-7cd7-4480-9ece-23a4906b008e.png)
 
 - en
 
-<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/62e29d22-2f12-4f78-92a6-4627d538f3be">
+<img width="218" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/62e29d22-2f12-4f78-92a6-4627d538f3be">
 
 - es
 
-<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/0020f998-75ac-4a23-9e8b-d027b5ae9114">
+<img width="218" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/0020f998-75ac-4a23-9e8b-d027b5ae9114">
 
 - fr
 
-<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/63a73927-8dd7-4072-b5c1-04b24773afb6">
+<img width="218" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/63a73927-8dd7-4072-b5c1-04b24773afb6">
 
 - de
   
-<img width="318" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/3cdc0dbe-f25a-49a0-97c9-9e63fc7a61aa">
+<img width="218" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/3cdc0dbe-f25a-49a0-97c9-9e63fc7a61aa">
 
 
