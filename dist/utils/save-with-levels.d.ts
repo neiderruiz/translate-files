@@ -1,2 +1,3 @@
 import { TypeJsonCsv } from "../types/types";
-export declare const saveWithLevels: (jsonObj: TypeJsonCsv[], folderSave: string) => void;
+import { ConfigOptions } from "./translate-file-csv";
+export declare const saveWithLevels: (jsonObj: TypeJsonCsv[], folderSave: string, config?: ConfigOptions) => void;

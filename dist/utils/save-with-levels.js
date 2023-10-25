@@ -27,7 +27,7 @@ exports.saveWithLevels = void 0;
 const fs = __importStar(require("fs"));
 const add_key_value_to_object_1 = require("./add-key-value-to-object");
 const sort_by_language_1 = require("./sort-by-language");
-const saveWithLevels = (jsonObj, folderSave) => {
+const saveWithLevels = (jsonObj, folderSave, config) => {
     const translationsOrders = (0, sort_by_language_1.sortByLanguage)(jsonObj);
     const notCreate = ["base", "key"];
     translationsOrders.map((translation) => {
@@ -35,7 +35,7 @@ const saveWithLevels = (jsonObj, folderSave) => {
         if (!notCreate.includes(language)) {
             let result = {};
             Object.entries(translation[language]).forEach(([key, value]) => {
-                const keys = key.split("&&");
+                const keys = key.split(config?.separator ?? ".");
                 (0, add_key_value_to_object_1.addKeyValueToObject)(result, keys, value);
             });
             fs.writeFileSync(`${folderSave}/${language}.json`, JSON.stringify(result, null, 4));

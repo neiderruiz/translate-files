@@ -30,7 +30,7 @@ exports.translateFileCsv = void 0;
 const fs = __importStar(require("fs"));
 const csvtojson_1 = __importDefault(require("csvtojson"));
 const save_with_levels_1 = require("./save-with-levels");
-const translateFileCsv = async (idDoc, folderSave) => {
+const translateFileCsv = async (idDoc, folderSave, config) => {
     fetch(`https://docs.google.com/spreadsheets/d/${idDoc}/gviz/tq?tqx=out:csv`).then(async (response) => {
         const data = await response.text();
         if (response.status === 200) {
@@ -44,7 +44,7 @@ const translateFileCsv = async (idDoc, folderSave) => {
             (0, csvtojson_1.default)()
                 .fromFile(`${folderSave}/translations-app.csv`)
                 .then((jsonObj) => {
-                (0, save_with_levels_1.saveWithLevels)(jsonObj, folderSave);
+                (0, save_with_levels_1.saveWithLevels)(jsonObj, folderSave, config);
             });
         }
         else {
