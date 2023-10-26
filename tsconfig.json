@@ -14,6 +14,7 @@
     "jsx": "react-jsx",
     "declaration": true,
     "outDir": "dist",
+    "declarationDir": "dist/types",
     "module": "ESNext",
     "types": [
       "node"
@@ -24,7 +25,7 @@
     "downlevelIteration": true
   },
   "include": [
-    "src/react/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
