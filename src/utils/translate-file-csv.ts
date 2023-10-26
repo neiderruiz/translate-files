@@ -13,11 +13,15 @@ export const translateFileCsv = async (idDoc: string, folderSave: string, config
     const data = await response.text();
     if (response.status === 200) {
       try {
+        if (!fs.existsSync(folderSave)) {
+          fs.mkdirSync(folderSave, { recursive: true });
+        }
         fs.writeFileSync(`${folderSave}/translations-app.csv`, data);
-      } catch (e) {
-        console.error(`folder not found`);
+      } catch (e: any) {
+        console.error(`Error al escribir el archivo o crear el directorio: ${e.message}`);
         return;
       }
+
       csv()
         .fromFile(`${folderSave}/translations-app.csv`)
         .then((jsonObj) => {
