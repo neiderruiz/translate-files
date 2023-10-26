@@ -44,6 +44,10 @@ translateFileCsv(idDocument,routeFolderSave)
 - import your result in Google Drive <a href="https://drive.google.com/drive/my-drive" target="_blank">open google drive</a>
 
     - after open file with google sheets
+ 
+- after select keys and base, and copy in your copy of next document
+
+<img src="https://github.com/neiderruiz/translate-files/assets/57574910/5e874c0f-f857-4a5b-bc15-de16112d9aa4" width="300" alt="image" />
 
 ## Open url and duplicate file  in your google drive.
 
