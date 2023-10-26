@@ -27,12 +27,14 @@ exports.saveWithLevels = void 0;
 const fs = __importStar(require("fs"));
 const add_key_value_to_object_1 = require("./add-key-value-to-object");
 const sort_by_language_1 = require("./sort-by-language");
+const langs_1 = require("../types/langs");
 const saveWithLevels = (jsonObj, folderSave, config) => {
     const translationsOrders = (0, sort_by_language_1.sortByLanguage)(jsonObj);
     const notCreate = ["base", "key"];
+    const langsKeys = langs_1.langs.map((lang) => lang.code);
     translationsOrders.map((translation) => {
         const language = Object.keys(translation)[0];
-        if (!notCreate.includes(language)) {
+        if (!notCreate.includes(language) && langsKeys.includes(language)) {
             let result = {};
             Object.entries(translation[language]).forEach(([key, value]) => {
                 const keys = key.split(config?.separator ?? ".");
