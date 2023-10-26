@@ -2,6 +2,8 @@
 
 ## Internationalize your website or app in a simple way 🇨🇴 🇺🇸 🇩🇪
 
+## ✅ Let's speak in the same language!
+
 - install in project
 
 ```
