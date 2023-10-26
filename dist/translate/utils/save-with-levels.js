@@ -23,7 +23,7 @@ const saveWithLevels = (jsonObj, folderSave, config) => {
         (0, _addKeyValueToObject.addKeyValueToObject)(result, keys, value);
       });
       fs.writeFileSync(`${folderSave}/${language}.json`, JSON.stringify(result, null, 4));
-      console.log(`Finish success ${language}`);
+      console.log(`🟢  Finish success ${language.toUpperCase()}  ${folderSave}/${language}.json \n`);
     }
   });
 };
