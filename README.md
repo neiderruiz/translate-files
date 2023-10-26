@@ -139,3 +139,126 @@ npm run translate
 <img width="218" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/3cdc0dbe-f25a-49a0-97c9-9e63fc7a61aa">
 
 
+# implement in React Js
+
+## install package
+
+```bash
+npm i @neiderruiz/translate-files react-i18next i18next
+```
+
+- get translations spreadsheet id
+
+```javascript
+// src/utils/translate.js
+import { translateFileCsv } from '@neiderruiz/translate-files'
+
+translateFileCsv('1UwWGPdr8XDO29tNzFiJtPDTFVt1xCLG-gSVeQd-x5Oc', './src/locales/translations')
+
+```
+
+- add script in package.json
+
+
+```json
+// package.json
+{
+    "scripts": {
+        ...more scripts,
+        "translate": "node src/utils/translate.js"
+    }
+}
+```
+
+- make resources file
+
+```javascript
+// src/locales/index.js
+import en from './translations/en.json'
+import es from './translations/es.json'
+import fr from './translations/fr.json'
+
+export const resources = {
+    en: {
+        translation: en
+    },
+    es: {
+        translation: es
+    },
+    fr: {
+        translation: fr
+    }
+}
+
+```
+
+- create file i18n.js
+
+
+```javascript
+// src/locales/i18n.ts
+import i18n from "i18next";
+
+import { initReactI18next } from "react-i18next";
+import { resources } from ".";
+
+i18n.use(initReactI18next)
+.init({
+    resources,
+    lng: "es",
+    fallbackLng: "es",
+    interpolation: {
+        escapeValue: false
+    }
+});
+
+export default i18n;
+```
+
+- add i18n in index.js
+
+```javascript
+// src/main.tsx or src/App.tsx
+import './locales/i18n';
+```
+
+- make Hook useTranslate React Js
+
+```javascript
+// src/hooks/use-translate.tsx
+import { useTypedTranslation } from '@neiderruiz/translate-files/dist/react'
+import en from '../locales/translations/en.json'
+import i18n from '../locales/i18n'
+
+type Tylelang = typeof en
+
+const useTranslation = () => {
+    const { t } = useTypedTranslation<Tylelang>()
+    return {
+        t,
+        i18n
+    }
+}
+
+export default useTranslation
+```
+
+- how use hook
+
+```Jsx
+// src/components/Example.tsx
+import React from 'react'
+import useTranslation from '../hooks/use-translate'
+
+const Example = () => {
+    const { t } = useTranslation()
+    return (
+        <div>
+            {t('actions.save')}
+            {/* how pased params */}
+            <span>
+                {t('actions.save_items',  ['mi param', 'second param'])}
+            </span>
+        </div>
+    )
+}
