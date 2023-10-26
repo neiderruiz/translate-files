@@ -1,4 +1,4 @@
-import {useTypedTranslation} from './hooks/use-translation'
+import { useTypedTranslation } from './hooks/use-translation'
 
 export {
     useTypedTranslation,
