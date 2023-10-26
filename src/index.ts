@@ -1,3 +1,3 @@
-import { convertJsonToCsv } from "./utils/convert-json-to-csv";
-import { translateFileCsv } from "./utils/translate-file-csv";
+import { convertJsonToCsv } from "./translate/utils/convert-json-to-csv";
+import { translateFileCsv } from "./translate/utils/translate-file-csv";
 export { translateFileCsv, convertJsonToCsv };
