@@ -47,7 +47,7 @@ translateFileCsv(idDocument,routeFolderSave)
 
 ## Open url and duplicate file  in your google drive.
 
-🟢 <a href="https://docs.google.com/spreadsheets/d/1Xz_no_pM1hFRYJg_k_-gVqIvdwBycBVF/edit" target="_blank">document base spreadsheets translations</a>
+🟢 <a href="https://docs.google.com/spreadsheets/d/1DP_xHUndNhb4900eaHwOZC03YhDO2LozwFUYOx89e7U/edit" target="_blank">document base spreadsheets translations</a>
 
 - #### Share document
     - give read permission
