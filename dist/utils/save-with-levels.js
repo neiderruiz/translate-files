@@ -11,7 +11,8 @@ export const saveWithLevels = (jsonObj, folderSave, config) => {
         if (!notCreate.includes(language) && langsKeys.includes(language)) {
             let result = {};
             Object.entries(translation[language]).forEach(([key, value]) => {
-                const keys = key.split(config?.separator ?? ".");
+                var _a;
+                const keys = key.split((_a = config === null || config === void 0 ? void 0 : config.separator) !== null && _a !== void 0 ? _a : ".");
                 addKeyValueToObject(result, keys, value);
             });
             fs.writeFileSync(`${folderSave}/${language}.json`, JSON.stringify(result, null, 4));
