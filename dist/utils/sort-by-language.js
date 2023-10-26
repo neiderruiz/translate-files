@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sortByLanguage = void 0;
-const sortByLanguage = (jsonObj) => {
+export const sortByLanguage = (jsonObj) => {
     let n = [];
     jsonObj.map((row) => {
         // filas
@@ -24,4 +21,3 @@ const sortByLanguage = (jsonObj) => {
     });
     return n;
 };
-exports.sortByLanguage = sortByLanguage;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.langs = void 0;
-exports.langs = [
+export const langs = [
     {
         code: 'hi',
         name: 'Hindi',
