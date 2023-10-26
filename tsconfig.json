@@ -24,7 +24,7 @@
     "downlevelIteration": true
   },
   "include": [
-    "src/**/*"
+    "src/react/**/*"
   ],
   "exclude": [
     "node_modules",
