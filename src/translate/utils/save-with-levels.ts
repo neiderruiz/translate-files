@@ -21,7 +21,7 @@ export const saveWithLevels = (jsonObj: TypeJsonCsv[], folderSave: string, confi
           `${folderSave}/${language}.json`,
           JSON.stringify(result, null, 4)
         );
-        console.log(`Finish success ${language}`);
+        console.log(`🟢  Finish success ${language.toUpperCase()}  ${folderSave}/${language}.json \n`);
       }
     });
   };
