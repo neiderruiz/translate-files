@@ -22,19 +22,11 @@ export const createConversion = (jsonObj: TypeJson, config?: ConfigOptions) => {
 
   let rowCounter = 2;
   const traverse = (obj: TypeJson, path = "") => {
-    Object.entries(obj).forEach(([key, value], index) => {
+    Object.entries(obj).forEach(([key, value]) => {
       if (typeof value === "object") {
         traverse(value, path + key + (config?.separator ?? "."));
       } else {
-        csv += `"${path}${key}","${value}"`;
-
-        config?.langs?.forEach((lang) => {
-          csv += `,"=GOOGLETRANSLATE(B${rowCounter},""auto"",""${lang}"")"`;
-        });
-
-        csv += "\n";
-
-        rowCounter++;
+        csv += `"${path}${key}","${value}"\n`; 
       }
     }
     );
