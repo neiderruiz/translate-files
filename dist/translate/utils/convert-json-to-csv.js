@@ -1,1 +1,35 @@
-"use strict";var fs=_interopRequireWildcard(require("fs"));Object.defineProperty(exports,"__esModule",{value:!0}),exports.createConversion=exports.convertJsonToCsv=void 0;function _getRequireWildcardCache(a){if("function"!=typeof WeakMap)return null;var b=new WeakMap,c=new WeakMap;return(_getRequireWildcardCache=function(a){return a?c:b})(a)}function _interopRequireWildcard(b,c){if(!c&&b&&b.__esModule)return b;if(null===b||"object"!=typeof b&&"function"!=typeof b)return{default:b};var d=_getRequireWildcardCache(c);if(d&&d.has(b))return d.get(b);var e={__proto__:null},f=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var a in b)if("default"!=a&&Object.prototype.hasOwnProperty.call(b,a)){var g=f?Object.getOwnPropertyDescriptor(b,a):null;g&&(g.get||g.set)?Object.defineProperty(e,a,g):e[a]=b[a]}return e.default=b,d&&d.set(b,e),e}const createConversion=(a,b)=>{let c="\"key\",\"base\"";b?.langs?.forEach(a=>{c+=`,"${a}"`}),c+="\n";const d=(a,e="")=>{Object.entries(a).forEach(([a,f])=>{"object"==typeof f?d(f,e+a+(b?.separator??".")):c+=`"${e}${a}","${f}"\n`})};return d(a),console.log(`TRANSLATE SUCCESS ${b?.nameFile??"converted"}.csv added ${2} rows`),c};exports.createConversion=createConversion;const convertJsonToCsv=(a,b={})=>{const c=createConversion(a,b);fs.writeFileSync(`${b?.nameFile??"converted"}.csv`,c)};exports.convertJsonToCsv=convertJsonToCsv;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createConversion = exports.convertJsonToCsv = void 0;
+var fs = _interopRequireWildcard(require("fs"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+const createConversion = (jsonObj, config) => {
+  let csv = '"key","base"';
+  config?.langs?.forEach(lang => {
+    csv += `,"${lang}"`;
+  });
+  csv += "\n";
+  let rowCounter = 2;
+  const traverse = (obj, path = "") => {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (typeof value === "object") {
+        traverse(value, path + key + (config?.separator ?? "."));
+      } else {
+        csv += `"${path}${key}","${value}"\n`;
+      }
+    });
+  };
+  traverse(jsonObj);
+  console.log(`TRANSLATE SUCCESS ${config?.nameFile ?? 'converted'}.csv added ${rowCounter} rows`);
+  return csv;
+};
+exports.createConversion = createConversion;
+const convertJsonToCsv = (data, config = {}) => {
+  const result = createConversion(data, config);
+  fs.writeFileSync(`${config?.nameFile ?? 'converted'}.csv`, result);
+};
+exports.convertJsonToCsv = convertJsonToCsv;
