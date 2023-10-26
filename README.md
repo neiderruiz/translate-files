@@ -4,6 +4,8 @@
 
 ## ✅ Let's speak in the same language!
 
+<img width="389" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/8dfed716-9ca1-4901-af20-c0b4f4919aaa">
+
 - install in project
 
 ```
