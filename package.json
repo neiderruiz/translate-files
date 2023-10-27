@@ -4,6 +4,9 @@
   "description": "Internationalize and manage your website easily with (CSV and i18n)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "./react": "./dist/react/index.js"
+  },
   "scripts": {
     "test": "jest",
     "build:babel": "babel src --out-dir dist --extensions '.ts,.tsx,.js,.jsx'",
