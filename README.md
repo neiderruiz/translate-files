@@ -230,14 +230,17 @@ import './locales/i18n';
 
 ```javascript
 // src/hooks/use-translate.tsx
-import { useTypedTranslation } from '@neiderruiz/translate-files/dist/react'
+import { useTypedTranslation, FlattenKeys } from '@neiderruiz/translate-files/react'
 import en from '../locales/translations/en.json'
 import i18n from '../locales/i18n'
 
 type Tylelang = typeof en
 
+export type KeysTranslation = FlattenKeys<Tylelang>
+
 const useTranslation = () => {
     const { t } = useTypedTranslation<Tylelang>()
+
     return {
         t,
         i18n
