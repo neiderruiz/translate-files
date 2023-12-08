@@ -6,25 +6,36 @@
 
 <img width="389" alt="image" src="https://github.com/neiderruiz/translate-files/assets/57574910/8dfed716-9ca1-4901-af20-c0b4f4919aaa">
 
-- install in project
+## 📖 Table of Contents
+- [🚀 Getting started](#-getting-started)
+  - [1. Install](#1-install)
+  - [2. Config base Translations](#2-configure-translations)
+- [📦 Convert JSON to CSV](#-convert-json)
+- [🔵 Implement in React Js](#implement-in-react-js)
+- [🟠 Implement in Astro](#implement-in-astro)
 
-```
+### 1. Install
+
+```bash
 npm i @neiderruiz/translate-files
 ```
-```
+
+```javascript
 import { translateFileCsv } from "@neiderruiz/translate-files";
 ```
 
 - or 
 
-```
+```javascript
 const { translateFileCsv } = require("@neiderruiz/translate-files");
 ```
 
 - usign
-```
+```javascript
 translateFileCsv(idDocument,routeFolderSave)
 ```
+
+## generate
 
 ##  🛑 If you already have a json with your translations you can use it as a base!
 
@@ -44,6 +55,7 @@ translateFileCsv(idDocument,routeFolderSave)
         nameFile: 'my_result'
     })
 ```
+### 2. configure translations
 
 - import your result in Google Drive <a href="https://drive.google.com/drive/my-drive" target="_blank">open google drive</a>
 
@@ -118,6 +130,7 @@ translateFileCsv('19sxdh1WE5RMXiuTWuMJonu81NWrewZbZ','./translations')
 ```
 
 - run script
+
 ```bash
 npm run translate
 ```
@@ -269,3 +282,81 @@ const Example = () => {
         </div>
     )
 }
+```
+
+# implement in Astro
+
+## install packages
+
+```bash
+npm i @neiderruiz/translate-files astro-i18next @types/i18next -D
+```
+
+- config astro-i18next
+
+<a href="https://www.npmjs.com/package/astro-i18next#1-install" target="_blank">view documentation</a>
+
+```javascript
+// astro.config.mjs
+import { defineConfig } from "astro/config";
+import astroI18next from "astro-i18next";
+
+export default defineConfig({
+  integrations: [astroI18next()],
+});
+```
+
+- make file config
+    
+```javascript
+//astro-i18next.config.mjs
+export default {
+  defaultLocale: "en",
+  locales: ["en", "fr"],
+};
+
+```
+
+- get translations spreadsheet id
+
+```javascript
+// src/utils/translate.js
+const { makeTranslations } = require("@neiderruiz/translate-files/astro");
+
+makeTranslations('1UwWGPdr8XDO29tNzFiJtPDTFVt1xCLG-gSVeQd-x5Oc')
+```
+
+- add script in package.json
+
+```json
+// package.json
+{
+    "scripts": {
+        ...more scripts,
+        "translate": "node ./src/utils/translate.js && npx astro-i18next generate"
+    }
+}
+```
+
+- example use in astro
+
+```jsx
+// src/pages/index.astro
+---
+import { t } from "i18next";
+---
+
+<h1>{t('actions.save')}</h1>
+```
+
+- example interpolate params
+
+```jsx
+// src/pages/index.astro
+---
+import { t } from "i18next";
+---
+
+<h1>{t('test.counting',['1','20'])}</h1>
+// result <h1>counting 1 of 20</h1>
+```
