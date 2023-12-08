@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js", 
-    "./react": "./dist/react/index.js"
+    "./react": "./dist/react/index.js",
+    "./astro": "./dist/astro/index.js"
   },
   "scripts": {
     "test": "jest",
