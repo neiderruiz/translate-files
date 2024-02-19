@@ -15,5 +15,5 @@
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread"
   ],
-  "ignore": ["src/react/**/*"]
+  "ignore": ["src/react/**/*","src/next-js/**/*"]
 }
