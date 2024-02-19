@@ -7,7 +7,9 @@
   "exports": {
     ".": "./dist/index.js",
     "./react": "./dist/react/index.js",
-    "./astro": "./dist/astro/index.js"
+    "./astro": "./dist/astro/index.js",
+    "./next-js": "./dist/next-js/index.js",
+    "./next-js/hooks": "./dist/next-js/hooks/index.js"
   },
   "scripts": {
     "test": "jest",
@@ -48,11 +50,12 @@
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-typescript": "^7.23.2",
     "@types/node": "^20.4.5",
+    "@types/react": "^18.2.56",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "@types/i18next": "^13.0.0",
     "csvtojson": "^2.0.10",
-    "react-i18next": "^13.3.1"
+    "react-i18next": "^13.5.0"
   }
 }
