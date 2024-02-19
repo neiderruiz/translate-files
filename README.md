@@ -13,6 +13,7 @@
 - [📦 Convert JSON to CSV](#-convert-json)
 - [🔵 Implement in React Js](#implement-in-react-js)
 - [🟠 Implement in Astro](#implement-in-astro)
+- [🟢 Implement in NextJs](#implement-in-nextjs)
 
 ### 1. Install
 
@@ -359,4 +360,201 @@ import { t } from "i18next";
 
 <h1>{t('test.counting',['1','20'])}</h1>
 // result <h1>counting 1 of 20</h1>
+```
+# implement in NextJs
+
+## install packages
+```bash
+npm i @neiderruiz/translate-files @types/i18next next-i18n-router -D
+```
+
+- config next.js
+
+
+```javascript
+// ./src/utils/translate.js
+const { translateFileCsv } = require("@neiderruiz/translate-files");
+
+const documentId = 'documentId spreadsheets';
+const folderSave = './src/service/languages';
+
+translateFileCsv(documentId, folderSave, {
+    separator: '.',
+});
+```
+
+- add script in package.json
+
+```json
+// package.json
+{
+    "scripts": {
+        ...more scripts,
+        "translate": "node src/utils/translate.js"
+    }
+}
+```
+
+- run get translations
+
+```bash
+npm run translate
+```
+
+- export all translations in index.ts
+
+```javascript
+// in folderSave create (index.ts) and export your translation json
+
+import en from './en.json';
+import es from './es.json';
+import fr from './fr.json';
+
+
+export const resources = {
+	en: {
+		translation: en,
+	},
+	es: {
+		translation: es,
+	},
+	fr: {
+		translation: fr,
+	},
+};
+```
+
+- create i18nConfig.js ot i18nConfig.ts
+
+```javascript
+// ./i18nConfig.ts
+export const i18nConfig = {
+    locales: ['en', 'es','fr'], // add your translations
+    defaultLocale: 'es', // add your default translation
+    localeDetection: true
+}
+```
+
+- add middleware
+
+```javascript
+// ./src/middleware.ts
+import { i18nRouter } from "next-i18n-router";
+import i18nConfig from'../i18nConfig'
+
+export function middleware(req: any){
+    return i18nRouter(req, i18nConfig)
+}
+
+export const config = {
+    matcher:  "/((?!api|static|.*\\..*|_next).*)"
+}
+```
+
+- make folder [locale] in folder app
+
+    - basic structure
+        src/app/[locale]
+
+- move all files in folder [locale]
+  
+    src/app/[locale]
+    
+    src/app/[locale]/layout.tsx
+    
+    src/app/[locale]/page.tsx
+    
+    src/app/[locale]/about/page.tsx
+
+    src/app/[locale]... and more pages...
+
+
+- implement Provider
+
+```javascript
+// src/app/[locale]/layout.tsx
+
+import { TranslationsProvider } from "@neiderruiz/translate-files/next-js";
+//const folderSave = './src/service/languages';
+// import of folderSave resources
+import { resources } from "./src/service/languages"
+//or
+import { resources } from "@/service/languages"
+
+import i18nConfig from "../../../i18nConfig";
+
+type Props ={
+  children: React.ReactNode;
+  params: {
+    locale: string
+  }
+}
+
+export default function RootLayout({
+  children,
+  params: { locale }
+}: Readonly<Props>) {
+  return (
+    <html lang={locale}>
+      <body>
+        <TranslationsProvider
+          locale={locale}
+          fallbackLng={i18nConfig.locales}
+          resources={resources}
+        >
+          {children}
+        </TranslationsProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+- Create custom hook autocomplete
+
+```javascript
+// ./src/hooks/useTranslation.tsx
+import { FlattenKeys, useTypedTranslation } from '@neiderruiz/translate-files/next-js/hooks';
+import en from '@/service/languages/en.json';
+type Tylelang = typeof en
+
+export type KeysTranslation = FlattenKeys<Tylelang>
+
+const useTranslation = () => {
+    return {
+        ...useTypedTranslation<Tylelang>()
+    }
+}
+
+export default useTranslation
+```
+
+- how use
+
+```javascript
+// ./src/[locale]/about/page.tsx
+"use client"
+import useTranslation from '@/hooks/useTranslation';
+import Link from 'next/link';
+
+const Page = () => {
+    const { t, i18n } = useTranslation();
+
+    return <div>
+        <h1>{t('actions.welcome')}</h1>     
+            <Link href={`/${i18n.language}/home`}>
+                frances
+            </Link>
+
+            <Link href={`/fr/home`}>
+                frances
+            </Link>
+            <Link href={'/en/home'}>
+                ingles
+            </Link>
+            <Link href={'/es/home'}>
+                Español
+            </Link>
+    </div>
+}
 ```
