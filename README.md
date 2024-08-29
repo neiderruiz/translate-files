@@ -370,7 +370,7 @@ npm i @neiderruiz/translate-files @types/i18next next-i18n-router -D
 
 - config next.js
 
-
+## make translation with CSV
 ```javascript
 // ./src/utils/translate.js
 const { translateFileCsv } = require("@neiderruiz/translate-files");
@@ -381,6 +381,21 @@ const folderSave = './src/service/languages';
 translateFileCsv(documentId, folderSave, {
     separator: '.',
 });
+```
+
+## make translation with JSON
+```javascript
+// ./src/utils/translate.js
+const { translateFileJson } = require("@neiderruiz/translate-files");
+const es =  require('./es.json')
+
+const folderSave = './src/service/languages';
+
+translateFileJson(es,folderSave, {
+    input: 'es',
+    outputs: ['en','fr'];    
+});
+
 ```
 
 - add script in package.json
