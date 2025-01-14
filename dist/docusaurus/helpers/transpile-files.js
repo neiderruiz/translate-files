@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.transpileTransFiles = transpileTransFiles;
+exports.generateTranslations = generateTranslations;
 var _fs = _interopRequireDefault(require("fs"));
 var _processDirectory = require("./process-directory");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function transpileTransFiles({
+async function generateTranslations({
   locales,
   defaultLocale,
   pagesDir,

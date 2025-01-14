@@ -1,2 +1,2 @@
-import { transpileTransFiles } from "./helpers/transpile-files";
-export { transpileTransFiles };
+import { generateTranslations } from "./helpers/transpile-files";
+export { generateTranslations };

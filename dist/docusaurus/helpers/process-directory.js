@@ -21,7 +21,7 @@ const processDirectory = ({
     const itemPath = _path.default.join(dir, item);
     const itemRelativePath = _path.default.relative(pagesDir, itemPath);
     if (_fs.default.statSync(itemPath).isDirectory()) {
-      // Si es una subcarpeta, procesarla recursivamente
+      // subfolder process
       processDirectory({
         dir: itemPath,
         pagesDir,
@@ -30,7 +30,7 @@ const processDirectory = ({
         i18nDir
       });
     } else if (item.endsWith('.md') || item === '_category_.json') {
-      // Procesar archivo `.md` o `_category_.json`
+      // process archivo `.md` o `_category_.json`
       const content = _fs.default.readFileSync(itemPath, 'utf8');
       const keysAndTexts = (0, _extractKeysAndTexts.extractKeysAndTexts)(content);
       const localeArray = defaultLocale ? [defaultLocale, ...locales] : locales;
@@ -54,8 +54,6 @@ const processDirectory = ({
         }
         const outputFilePath = _path.default.join(localeDir, item);
         let translatedContent = content;
-
-        // Reemplazar claves con sus traducciones
         for (const [key, value] of Object.entries(translations)) {
           translatedContent = translatedContent.replace(new RegExp(`{{${key}\\|.*?}}`, 'g'), value);
         }
@@ -64,7 +62,7 @@ const processDirectory = ({
         console.log(`✅ (Translated): ${routeOutputLog}`);
       }
     } else {
-      // Procesar otros archivos (imágenes, etc.) para todos los idiomas
+      // move file to all locales
       locales.forEach(locale => {
         const localeDir = _path.default.join(i18nDir, locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath));
         if (!_fs.default.existsSync(localeDir)) {

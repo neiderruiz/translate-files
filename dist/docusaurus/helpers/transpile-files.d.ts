@@ -6,5 +6,5 @@ export type ConfigOptions = {
     i18nDir: string;
     apiKey?: string;
 };
-declare function transpileTransFiles({ locales, defaultLocale, pagesDir, i18nDir, apiKey }: ConfigOptions): Promise<void>;
-export { transpileTransFiles };
+declare function generateTranslations({ locales, defaultLocale, pagesDir, i18nDir, apiKey }: ConfigOptions): Promise<void>;
+export { generateTranslations };
