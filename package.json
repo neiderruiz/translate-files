@@ -31,7 +31,8 @@
     "i18next",
     "react-i18next",
     "nextjs translate",
-    "astro translate"
+    "astro translate",
+    "docusaurus translate"
   ],
   "repository": {
     "type": "git",
