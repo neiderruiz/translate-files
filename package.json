@@ -1,6 +1,6 @@
 {
   "name": "@neiderruiz/translate-files",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Internationalize and manage your website easily with (CSV or JSON to i18n)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,14 +9,16 @@
     "./react": "./dist/react/index.js",
     "./astro": "./dist/astro/index.js",
     "./next-js": "./dist/next-js/index.js",
-    "./next-js/hooks": "./dist/next-js/hooks/index.js"
+    "./next-js/hooks": "./dist/next-js/hooks/index.js",
+    "./docusaurus": "./dist/docusaurus/index.js"
   },
   "scripts": {
     "test": "jest",
     "build:babel": "babel src --out-dir dist --extensions '.ts,.tsx,.js,.jsx'",
     "build:react": "tsc",
     "build": "npm run build:react && npm run build:babel",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prebuild": "rm -rf dist"
   },
   "keywords": [
     "translate",
