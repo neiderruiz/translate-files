@@ -10,7 +10,7 @@ export type ConfigOptions = {
     apiKey?: string;
 };
 
-async function transpileTransFiles({ locales, defaultLocale, pagesDir, i18nDir, apiKey }: ConfigOptions): Promise<void> {
+async function generateTranslations({ locales, defaultLocale, pagesDir, i18nDir, apiKey }: ConfigOptions): Promise<void> {
     if (!fs.existsSync(pagesDir)) {
         console.error(`El directorio ${pagesDir} no existe.`);
         process.exit(1);
@@ -26,5 +26,5 @@ async function transpileTransFiles({ locales, defaultLocale, pagesDir, i18nDir, 
 }
 
 export {
-    transpileTransFiles
+    generateTranslations
 };
