@@ -31,8 +31,6 @@ export const blogTranslate = async ({
         const itemPath = path.join(dir, item);
 
         const itemRelativePath = path.relative(baseBlogDir, itemPath);
-        console.log(`📦 processing ${itemRelativePath} ... \n`);
-
 
         if (fs.statSync(itemPath).isDirectory()) {
             // subfolder process
