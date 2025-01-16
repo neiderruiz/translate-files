@@ -1,4 +1,4 @@
-import { generateTranslations } from "./helpers/transpile-files";
+import { generateTranslations } from "./helpers/generate-translations";
 
 export {
     generateTranslations
