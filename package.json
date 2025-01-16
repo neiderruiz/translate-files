@@ -1,6 +1,6 @@
 {
   "name": "@neiderruiz/translate-files",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Internationalize and manage your website easily with (CSV or JSON to i18n)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,11 @@
     "react-i18next",
     "nextjs translate",
     "astro translate",
-    "docusaurus translate"
+    "docusaurus translate",
+    "docusaurus i18n",
+    "reactjs i18n",
+    "nextjs i18n",
+    "astro i18n"
   ],
   "repository": {
     "type": "git",

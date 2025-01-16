@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "generateTranslations", {
   enumerable: true,
   get: function () {
-    return _transpileFiles.generateTranslations;
+    return _generateTranslations.generateTranslations;
   }
 });
-var _transpileFiles = require("./helpers/transpile-files");
+var _generateTranslations = require("./helpers/generate-translations");
