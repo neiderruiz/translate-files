@@ -3,32 +3,35 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.processDirectory = void 0;
+exports.docsTranslate = void 0;
 var _fs = _interopRequireDefault(require("fs"));
 var _path = _interopRequireDefault(require("path"));
 var _getTranslationsApi = require("../../translate/utils/get-translations-api");
+var _copyFilesFolder = require("./copy-files-folder");
 var _extractKeysAndTexts = require("./extract-keys-and-texts");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const processDirectory = ({
+const docsTranslate = async ({
   dir,
-  pagesDir,
+  baseDocsDir,
   defaultLocale,
   locales,
   i18nDir,
-  docDir = 'docs'
+  outputDocDir,
+  apiKey
 }) => {
   const items = _fs.default.readdirSync(dir);
   items.forEach(async item => {
     const itemPath = _path.default.join(dir, item);
-    const itemRelativePath = _path.default.relative(pagesDir, itemPath);
+    const itemRelativePath = _path.default.relative(baseDocsDir, itemPath);
     if (_fs.default.statSync(itemPath).isDirectory()) {
       // subfolder process
-      processDirectory({
+      docsTranslate({
         dir: itemPath,
-        pagesDir,
+        baseDocsDir,
         defaultLocale,
         locales,
-        i18nDir
+        i18nDir,
+        outputDocDir
       });
     } else if (item.endsWith('.md') || item === '_category_.json') {
       // process archivo `.md` o `_category_.json`
@@ -44,7 +47,8 @@ const processDirectory = ({
             sourceLang: defaultLocale,
             targetLang: locale,
             data: keysAndTexts,
-            typeProject: 'docusaurus'
+            typeProject: 'docusaurus',
+            apiKey
           });
         }
         const localeDir = _path.default.join(i18nDir, locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath));
@@ -60,43 +64,31 @@ const processDirectory = ({
         }
         const routeOutputLog = _path.default.join(locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath), item);
         if (defaultLocale === locale) {
-          const baseDocsPath = _path.default.join(docDir, _path.default.dirname(itemRelativePath));
+          const baseDocsPath = _path.default.join(outputDocDir, _path.default.dirname(itemRelativePath));
           if (!_fs.default.existsSync(baseDocsPath)) {
             _fs.default.mkdirSync(baseDocsPath, {
               recursive: true
             });
           }
-          const routeFileSaveDoc = _path.default.join(docDir, _path.default.dirname(itemRelativePath), item);
+          const routeFileSaveDoc = _path.default.join(outputDocDir, _path.default.dirname(itemRelativePath), item);
           _fs.default.writeFileSync(routeFileSaveDoc, translatedContent);
         }
         _fs.default.writeFileSync(outputFilePath, translatedContent);
         console.log(`✅ (Translated): ${routeOutputLog}`);
       }
     } else {
-      // move file to all locales
-      locales.forEach(locale => {
-        const localeDir = _path.default.join(i18nDir, locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath));
-        if (!_fs.default.existsSync(localeDir)) {
-          _fs.default.mkdirSync(localeDir, {
-            recursive: true
-          });
-        }
-        const outputFilePath = _path.default.join(localeDir, item);
-        _fs.default.copyFileSync(itemPath, outputFilePath);
-        const routeOutputLog = _path.default.join(locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath), item);
-        if (defaultLocale == locale) {
-          const routeFilesDoc = _path.default.join(docDir, _path.default.dirname(itemRelativePath));
-          if (!_fs.default.existsSync(routeFilesDoc)) {
-            _fs.default.mkdirSync(routeFilesDoc, {
-              recursive: true
-            });
-          }
-          const outputFileDoc = _path.default.join(routeFilesDoc, item);
-          _fs.default.copyFileSync(itemPath, outputFileDoc);
-        }
-        console.log(`🔄 (File - Copied): ${routeOutputLog}`);
+      // move file to all locales and copy to docs
+      (0, _copyFilesFolder.copyFilesFolder)({
+        defaultFolder: outputDocDir,
+        defaultLocale,
+        i18nDir,
+        item,
+        itemPath,
+        itemRelativePath,
+        locales,
+        baseFolderSave: 'docusaurus-plugin-content-docs/current'
       });
     }
   });
 };
-exports.processDirectory = processDirectory;
+exports.docsTranslate = docsTranslate;
