@@ -10,9 +10,10 @@ type Options = {
     i18nDir: string;
     defaultLocale: TypeListLang;
     locales: TypeListLang[];
+    docDir?: string;
 }
 
-export const processDirectory = ({ dir, pagesDir, defaultLocale, locales, i18nDir }: Options) => {
+export const processDirectory = ({ dir, pagesDir, defaultLocale, locales, i18nDir, docDir = 'docs' }: Options) => {
     const items = fs.readdirSync(dir);
 
     items.forEach(async (item) => {
@@ -71,6 +72,25 @@ export const processDirectory = ({ dir, pagesDir, defaultLocale, locales, i18nDi
                     item
                 );
 
+                if (defaultLocale === locale) {
+                    const baseDocsPath = path.join(
+                        docDir,
+                        path.dirname(itemRelativePath)
+                    );
+
+                    if (!fs.existsSync(baseDocsPath)) {
+                        fs.mkdirSync(baseDocsPath, { recursive: true });
+                    }
+
+                    const routeFileSaveDoc = path.join(
+                        docDir,
+                        path.dirname(itemRelativePath),
+                        item
+                    );
+
+                    fs.writeFileSync(routeFileSaveDoc, translatedContent);
+                }
+
                 fs.writeFileSync(outputFilePath, translatedContent);
                 console.log(`✅ (Translated): ${routeOutputLog}`);
             }
@@ -97,6 +117,16 @@ export const processDirectory = ({ dir, pagesDir, defaultLocale, locales, i18nDi
                     path.dirname(itemRelativePath),
                     item
                 );
+
+                if (defaultLocale == locale) {
+                    const routeFilesDoc = path.join(
+                        docDir,
+                        path.dirname(itemRelativePath),
+                    );
+
+                    const outputFileDoc = path.join(routeFilesDoc, item);
+                    fs.copyFileSync(itemPath, outputFileDoc);
+                }
 
                 console.log(`🔄 (File - Copied): ${routeOutputLog}`);
             });
