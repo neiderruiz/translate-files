@@ -124,6 +124,10 @@ export const processDirectory = ({ dir, pagesDir, defaultLocale, locales, i18nDi
                         path.dirname(itemRelativePath),
                     );
 
+                    if (!fs.existsSync(routeFilesDoc)) {
+                        fs.mkdirSync(routeFilesDoc, { recursive: true });
+                    }
+
                     const outputFileDoc = path.join(routeFilesDoc, item);
                     fs.copyFileSync(itemPath, outputFileDoc);
                 }

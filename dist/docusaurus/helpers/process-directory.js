@@ -86,6 +86,11 @@ const processDirectory = ({
         const routeOutputLog = _path.default.join(locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath), item);
         if (defaultLocale == locale) {
           const routeFilesDoc = _path.default.join(docDir, _path.default.dirname(itemRelativePath));
+          if (!_fs.default.existsSync(routeFilesDoc)) {
+            _fs.default.mkdirSync(routeFilesDoc, {
+              recursive: true
+            });
+          }
           const outputFileDoc = _path.default.join(routeFilesDoc, item);
           _fs.default.copyFileSync(itemPath, outputFileDoc);
         }
