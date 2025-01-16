@@ -14,7 +14,8 @@ const processDirectory = ({
   pagesDir,
   defaultLocale,
   locales,
-  i18nDir
+  i18nDir,
+  docDir = 'docs'
 }) => {
   const items = _fs.default.readdirSync(dir);
   items.forEach(async item => {
@@ -58,6 +59,16 @@ const processDirectory = ({
           translatedContent = translatedContent.replace(new RegExp(`{{${key}\\|.*?}}`, 'g'), value);
         }
         const routeOutputLog = _path.default.join(locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath), item);
+        if (defaultLocale === locale) {
+          const baseDocsPath = _path.default.join(docDir, _path.default.dirname(itemRelativePath));
+          if (!_fs.default.existsSync(baseDocsPath)) {
+            _fs.default.mkdirSync(baseDocsPath, {
+              recursive: true
+            });
+          }
+          const routeFileSaveDoc = _path.default.join(docDir, _path.default.dirname(itemRelativePath), item);
+          _fs.default.writeFileSync(routeFileSaveDoc, translatedContent);
+        }
         _fs.default.writeFileSync(outputFilePath, translatedContent);
         console.log(`✅ (Translated): ${routeOutputLog}`);
       }
@@ -73,6 +84,11 @@ const processDirectory = ({
         const outputFilePath = _path.default.join(localeDir, item);
         _fs.default.copyFileSync(itemPath, outputFilePath);
         const routeOutputLog = _path.default.join(locale, 'docusaurus-plugin-content-docs/current', _path.default.dirname(itemRelativePath), item);
+        if (defaultLocale == locale) {
+          const routeFilesDoc = _path.default.join(docDir, _path.default.dirname(itemRelativePath));
+          const outputFileDoc = _path.default.join(routeFilesDoc, item);
+          _fs.default.copyFileSync(itemPath, outputFileDoc);
+        }
         console.log(`🔄 (File - Copied): ${routeOutputLog}`);
       });
     }
