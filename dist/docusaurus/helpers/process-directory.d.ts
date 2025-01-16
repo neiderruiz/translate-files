@@ -5,6 +5,7 @@ type Options = {
     i18nDir: string;
     defaultLocale: TypeListLang;
     locales: TypeListLang[];
+    docDir?: string;
 };
-export declare const processDirectory: ({ dir, pagesDir, defaultLocale, locales, i18nDir }: Options) => void;
+export declare const processDirectory: ({ dir, pagesDir, defaultLocale, locales, i18nDir, docDir }: Options) => void;
 export {};
