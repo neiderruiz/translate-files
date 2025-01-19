@@ -1,12 +1,13 @@
 import * as fs from "fs";
-import { getTranslationsFromAPI, Typeproject } from 'src/translate/utils/get-translations-api';
 import { TypeListLang } from '../types/langs';
+import { TypeProject } from "../types/type-project";
+import { getTranslationsFromAPI } from '../utils/get-translations-api';
 
 export type ConfigOptions = {
   input: TypeListLang;
   target_langs: TypeListLang[];
   api_key?: string;
-  typeProject: Typeproject
+  typeProject: TypeProject
 }
 
 export type JsonBase = {
@@ -41,7 +42,9 @@ export const translateFileJson = async (jsonBase: JsonBase, folderSave: string, 
         data: jsonBase,
         sourceLang: config?.input,
         targetLang: output,
-        typeProject: config?.typeProject,
+        typeProject: config?.typeProject ?? 'json',
+        apiKey: config?.api_key,
+        route_file: `${config?.input}.json`
       })
 
       if (!fs.existsSync(folderSave)) {
@@ -56,6 +59,7 @@ export const translateFileJson = async (jsonBase: JsonBase, folderSave: string, 
 
       console.log(`📦  Finish success ${output.toUpperCase()}  ${folderSave}/${output}.json \n`);
     }
+
   } catch (error: any) {
     console.log(`${error.message} \n`);
     console.error("🛑 Timeout error occurred. We are aware of the issue and are working to resolve it. Please try again later... \n");
