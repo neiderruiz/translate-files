@@ -40,7 +40,8 @@ export const blogTranslate = async ({
                 defaultLocale,
                 locales,
                 i18nDir,
-                outputBlogDir
+                outputBlogDir,
+                apiKey
             });
         } else if (item.endsWith('.md') || item.endsWith('.yml')) {
 
@@ -58,7 +59,8 @@ export const blogTranslate = async ({
                         targetLang: locale,
                         data: keysAndTexts,
                         typeProject: 'docusaurus',
-                        apiKey
+                        apiKey,
+                        route_file: itemPath
                     });
                 }
 
