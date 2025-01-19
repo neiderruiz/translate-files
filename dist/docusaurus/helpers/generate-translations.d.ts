@@ -9,8 +9,9 @@ export type ConfigOptions = {
     baseDocDir?: string;
     disableDocs?: boolean;
     disableBlog?: boolean;
+    disableReactFiles?: boolean;
     outputDocDir?: string;
     outputBlogDir?: string;
 };
-declare function generateTranslations({ locales, defaultLocale, baseDocsDir, i18nDir, apiKey, baseBlogDir, outputDocDir, outputBlogDir, disableBlog, disableDocs }: ConfigOptions): Promise<void>;
+declare function generateTranslations({ locales, defaultLocale, baseDocsDir, i18nDir, apiKey, baseBlogDir, outputDocDir, outputBlogDir, disableBlog, disableDocs, disableReactFiles }: ConfigOptions): Promise<void>;
 export { generateTranslations };

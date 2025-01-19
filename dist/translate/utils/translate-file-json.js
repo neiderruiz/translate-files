@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.translateFileJson = void 0;
 var fs = _interopRequireWildcard(require("fs"));
-var _getTranslationsApi = require("src/translate/utils/get-translations-api");
+var _getTranslationsApi = require("../utils/get-translations-api");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const countTranslations = obj => {
@@ -32,7 +32,9 @@ const translateFileJson = async (jsonBase, folderSave, config) => {
         data: jsonBase,
         sourceLang: config?.input,
         targetLang: output,
-        typeProject: config?.typeProject
+        typeProject: config?.typeProject ?? 'json',
+        apiKey: config?.api_key,
+        route_file: `${config?.input}.json`
       });
       if (!fs.existsSync(folderSave)) {
         console.log('📦 create folder \n');

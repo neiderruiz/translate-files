@@ -1,4 +1,4 @@
-export type TypeJsonCsv = {
+export type TypeSimpleJson = {
     [key: string]: string;
 };
 export type TranslationsOrder = {
@@ -8,4 +8,10 @@ export type TranslationsOrder = {
 };
 export type ObjectWithStringKeys = {
     [key: string]: any;
+};
+export type FlattenWriteTranslationJson = {
+    [key: string]: {
+        message: string;
+        description?: string;
+    };
 };

@@ -1,11 +1,11 @@
 import * as fs from "fs";
-import { TypeJsonCsv } from "../types/types";
+import { langs } from "../types/langs";
+import { TypeSimpleJson } from "../types/types";
 import { addKeyValueToObject } from "./add-key-value-to-object";
 import { sortByLanguage } from "./sort-by-language";
 import { ConfigOptions } from "./translate-file-csv";
-import { langs } from "../types/langs";
 
-export const saveWithLevels = (jsonObj: TypeJsonCsv[], folderSave: string, config?: ConfigOptions) => {
+export const saveWithLevels = (jsonObj: TypeSimpleJson[], folderSave: string, config?: ConfigOptions) => {
   return new Promise((resolve, reject) => {
     try {
       const translationsOrders = sortByLanguage(jsonObj);

@@ -1,6 +1,6 @@
 {
   "name": "@neiderruiz/translate-files",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Internationalize and manage your website easily with (CSV or JSON to i18n)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

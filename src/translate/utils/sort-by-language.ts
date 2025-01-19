@@ -1,6 +1,6 @@
-import { TranslationsOrder, TypeJsonCsv } from "../types/types";
+import { TranslationsOrder, TypeSimpleJson } from "../types/types";
 
-export const sortByLanguage = (jsonObj: TypeJsonCsv[]) => {
+export const sortByLanguage = (jsonObj: TypeSimpleJson[]) => {
   let n: TranslationsOrder[] = [];
   jsonObj.map((row) => {
     // filas

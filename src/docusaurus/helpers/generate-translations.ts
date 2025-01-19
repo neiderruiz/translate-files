@@ -2,6 +2,7 @@ import fs from 'fs';
 import { TypeListLang } from 'src/translate/types/langs';
 import { blogTranslate } from './blog-translate';
 import { docsTranslate } from './docs-translate';
+import { generateWriteTranslations } from './generate-write-translations';
 
 export type ConfigOptions = {
     locales: TypeListLang[];
@@ -13,6 +14,7 @@ export type ConfigOptions = {
     baseDocDir?: string;
     disableDocs?: boolean;
     disableBlog?: boolean;
+    disableReactFiles?: boolean;
     outputDocDir?: string;
     outputBlogDir?: string;
 };
@@ -27,11 +29,13 @@ async function generateTranslations({
     outputDocDir = './docs',
     outputBlogDir = './blog',
     disableBlog,
-    disableDocs
+    disableDocs,
+    disableReactFiles = true
 
 }: ConfigOptions): Promise<void> {
+
     if (disableDocs) {
-        console.log('🚫 Not translate docs');
+        console.log('\n 🚫 Not translate docs \n');
     } else {
         if (!fs.existsSync(baseDocsDir)) {
             console.error(`El directorio ${baseDocsDir} no existe.`);
@@ -49,12 +53,13 @@ async function generateTranslations({
     }
 
     if (disableBlog) {
-        console.log('🚫 Not translate blog');
+        console.log('\n 🚫 Not translate blog \n');
     } else {
         if (!fs.existsSync(baseBlogDir)) {
             console.error(`El directorio ${baseBlogDir} no existe.`);
             process.exit(1);
         }
+
         await blogTranslate({
             dir: baseBlogDir,
             locales,
@@ -65,6 +70,18 @@ async function generateTranslations({
             baseBlogDir,
         })
     }
+
+    if (disableReactFiles) {
+        console.log('\n 🚫 Not translate react files \n');
+    } else {
+        await generateWriteTranslations({
+            locales,
+            defaultLocale,
+            apiKey
+        })
+    }
+
+    console.log('✅ Finish success \n');
 }
 
 export {

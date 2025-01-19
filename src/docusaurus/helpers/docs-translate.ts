@@ -36,7 +36,8 @@ export const docsTranslate = async ({
                 defaultLocale,
                 locales,
                 i18nDir,
-                outputDocDir
+                outputDocDir,
+                apiKey
             });
         } else if (item.endsWith('.md') || item === '_category_.json') {
             // process archivo `.md` o `_category_.json`
@@ -54,7 +55,8 @@ export const docsTranslate = async ({
                         targetLang: locale,
                         data: keysAndTexts,
                         typeProject: 'docusaurus',
-                        apiKey
+                        apiKey,
+                        route_file: itemPath
                     });
                 }
 

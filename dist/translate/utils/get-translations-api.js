@@ -9,11 +9,15 @@ async function getTranslationsFromAPI({
   targetLang,
   data,
   apiKey,
-  typeProject
+  typeProject,
+  route_file
 }) {
   let url_api = `https://translate-files.neiderruiz.com/api/general_translations/?source_lang=${sourceLang}&target_lang=${targetLang}`;
   if (typeProject) {
-    url_api += `&${typeProject}`;
+    url_api += `&type_project=${typeProject}`;
+  }
+  if (route_file) {
+    url_api += `&route_file=${route_file}`;
   }
   const response = await fetch(url_api, {
     method: 'POST',

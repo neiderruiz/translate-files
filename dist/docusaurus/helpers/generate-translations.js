@@ -7,6 +7,7 @@ exports.generateTranslations = generateTranslations;
 var _fs = _interopRequireDefault(require("fs"));
 var _blogTranslate = require("./blog-translate");
 var _docsTranslate = require("./docs-translate");
+var _generateWriteTranslations = require("./generate-write-translations");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function generateTranslations({
   locales,
@@ -18,10 +19,11 @@ async function generateTranslations({
   outputDocDir = './docs',
   outputBlogDir = './blog',
   disableBlog,
-  disableDocs
+  disableDocs,
+  disableReactFiles = true
 }) {
   if (disableDocs) {
-    console.log('🚫 Not translate docs');
+    console.log('\n 🚫 Not translate docs \n');
   } else {
     if (!_fs.default.existsSync(baseDocsDir)) {
       console.error(`El directorio ${baseDocsDir} no existe.`);
@@ -38,7 +40,7 @@ async function generateTranslations({
     });
   }
   if (disableBlog) {
-    console.log('🚫 Not translate blog');
+    console.log('\n 🚫 Not translate blog \n');
   } else {
     if (!_fs.default.existsSync(baseBlogDir)) {
       console.error(`El directorio ${baseBlogDir} no existe.`);
@@ -54,4 +56,14 @@ async function generateTranslations({
       baseBlogDir
     });
   }
+  if (disableReactFiles) {
+    console.log('\n 🚫 Not translate react files \n');
+  } else {
+    await (0, _generateWriteTranslations.generateWriteTranslations)({
+      locales,
+      defaultLocale,
+      apiKey
+    });
+  }
+  console.log('✅ Finish success \n');
 }

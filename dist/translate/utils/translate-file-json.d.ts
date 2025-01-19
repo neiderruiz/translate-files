@@ -1,10 +1,10 @@
-import { Typeproject } from 'src/translate/utils/get-translations-api';
 import { TypeListLang } from '../types/langs';
+import { TypeProject } from "../types/type-project";
 export type ConfigOptions = {
     input: TypeListLang;
     target_langs: TypeListLang[];
     api_key?: string;
-    typeProject: Typeproject;
+    typeProject: TypeProject;
 };
 export type JsonBase = {
     [key: string]: string | object;
