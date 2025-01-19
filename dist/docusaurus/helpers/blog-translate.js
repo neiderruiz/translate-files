@@ -31,7 +31,8 @@ const blogTranslate = async ({
         defaultLocale,
         locales,
         i18nDir,
-        outputBlogDir
+        outputBlogDir,
+        apiKey
       });
     } else if (item.endsWith('.md') || item.endsWith('.yml')) {
       const content = _fs.default.readFileSync(itemPath, 'utf8');
@@ -47,7 +48,8 @@ const blogTranslate = async ({
             targetLang: locale,
             data: keysAndTexts,
             typeProject: 'docusaurus',
-            apiKey
+            apiKey,
+            route_file: itemPath
           });
         }
         const localeDir = _path.default.join(i18nDir, locale, 'docusaurus-plugin-content-blog', _path.default.dirname(itemRelativePath));
